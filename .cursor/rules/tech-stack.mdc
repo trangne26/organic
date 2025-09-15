@@ -1,0 +1,65 @@
+---
+description:
+globs:
+alwaysApply: true
+---
+Vite + Vue 3 (<script setup>, Composition API).
+
+1.Scope & Principles
+
+Goal: Xây dựng web bán thực phẩm hữu cơ MVP, nộp đồ án nhanh, dễ mở rộng.
+Simple-first: Bỏ qua phức tạp không cần thiết. Ưu tiên SSR/SEO cơ bản bằng meta tags tĩnh; có thể nâng cấp sau.
+Consistency over cleverness: Code kiểu tối giản, thống nhất, dễ review.
+
+2.UI/UX Guidelines (Organic brand)
+
+Tone: Tươi, nhẹ, tự nhiên. Spacing thoáng (md/lg).
+Palette gợi ý: green-600/700 cho CTA; fondo trắng/neutral; accent orange-500 cho giá/khuyến mãi.
+Layout: tối đa 2 cột trên desktop, 1 cột mobile; grid card 2–4 cột.
+A11y: alt text cho ảnh, label form, focus ring, contrast ≥ 4.5:1 khi có thể.
+Feedback: loading skeleton/spinner, empty state đơn giản.
+
+3.Chức năng
+3.1. Trang chính (Home)
+
+Banner giới thiệu sản phẩm nổi bật / khuyến mãi.
+Danh mục sản phẩm (rau củ, trái cây, ngũ cốc, gia vị, đồ khô, sản phẩm chế biến…).
+Sản phẩm mới nhất / bán chạy.
+Cam kết (100% hữu cơ, chứng nhận, giao nhanh, hoàn tiền…).
+
+3.2. Danh mục & tìm kiếm
+
+Bộ lọc sản phẩm: theo giá, loại sản phẩm, chứng nhận, thương hiệu.
+Tìm kiếm theo tên sản phẩm.
+
+3.3. Trang chi tiết sản phẩm
+
+Ảnh sản phẩm (có thể zoom).
+Mô tả (nguồn gốc, cách bảo quản, chứng nhận hữu cơ).
+Giá, khối lượng, đơn vị tính.
+Nút Thêm vào giỏ hàng.
+Review/đánh giá khách hàng.
+
+3.4. Giỏ hàng & thanh toán
+
+Xem danh sách sản phẩm đã chọn.
+Cập nhật số lượng / xóa sản phẩm.
+Tính tổng giá trị đơn hàng.
+Chọn phương thức giao hàng, thanh toán (COD, ví điện tử, chuyển khoản).
+Form nhập địa chỉ giao hàng.
+
+3.5. Tài khoản người dùng
+
+Đăng ký / đăng nhập.
+Thông tin cá nhân, lịch sử đơn hàng.
+Wishlist (sản phẩm yêu thích).
+
+3.6. Trang tin tức / blog
+
+Chia sẻ kiến thức về ăn uống lành mạnh, lợi ích của thực phẩm hữu cơ.
+Công thức nấu ăn với nguyên liệu từ shop.
+
+3.7. Trang liên hệ / giới thiệu
+
+Giới thiệu về cửa hàng, sứ mệnh, chứng nhận.
+Form liên hệ / hỗ trợ khách hàng.
