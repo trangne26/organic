@@ -357,7 +357,3 @@ const submitForm = async () => {
   }
 }
 </script>
-
-<style scoped>
-/* Custom styles for contact page */
-</style>

@@ -350,7 +350,6 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
-/* Custom styles for footer */
 .footer a:hover {
   transform: translateY(-1px);
   transition: transform 0.2s ease;

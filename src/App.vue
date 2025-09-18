@@ -14,7 +14,6 @@ import Footer from '@/components/layout/Footer.vue'
 </script>
 
 <style>
-/* App-specific styles */
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

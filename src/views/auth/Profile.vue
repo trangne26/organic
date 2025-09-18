@@ -538,7 +538,3 @@ const logout = () => {
   router.push('/')
 }
 </script>
-
-<style scoped>
-/* Custom styles for profile page */
-</style>

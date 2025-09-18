@@ -377,7 +377,6 @@ const vClickOutside = {
 </script>
 
 <style scoped>
-/* Custom styles for header */
 .router-link-active {
   color: #dcfce7;
 }
