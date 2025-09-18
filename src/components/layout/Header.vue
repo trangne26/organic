@@ -70,20 +70,6 @@
                 >
                   👤 Thông tin cá nhân
                 </router-link>
-                <router-link
-                  to="/profile"
-                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
-                  @click="closeUserMenu"
-                >
-                  📦 Đơn hàng của tôi
-                </router-link>
-                <router-link
-                  to="/profile"
-                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
-                  @click="closeUserMenu"
-                >
-                  💝 Sản phẩm yêu thích
-                </router-link>
                 <hr class="my-2">
                 <button
                   @click="logout"
@@ -375,9 +361,3 @@ const vClickOutside = {
   }
 }
 </script>
-
-<style scoped>
-.router-link-active {
-  color: #dcfce7;
-}
-</style>

@@ -16,9 +16,6 @@
         <aside class="lg:col-span-1">
           <div class="bg-white rounded-lg shadow-md p-6">
             <div class="text-center mb-6">
-              <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span class="text-2xl">👤</span>
-              </div>
               <h3 class="font-semibold text-gray-800">{{ user.fullName }}</h3>
               <p class="text-sm text-gray-600">{{ user.email }}</p>
             </div>
@@ -54,19 +51,8 @@
 
         <main class="lg:col-span-3">
           <div v-if="activeTab === 'info'" class="bg-white rounded-lg shadow-md p-6">
-            <div class="flex items-center justify-between mb-6">
+            <div class="mb-6">
               <h2 class="text-xl font-semibold text-gray-800">Thông tin cá nhân</h2>
-              <button
-                @click="editMode = !editMode"
-                :class="[
-                  'px-4 py-2 rounded-lg font-medium transition-colors',
-                  editMode
-                    ? 'bg-gray-300 text-gray-700 hover:bg-gray-400'
-                    : 'bg-green-600 text-white hover:bg-green-700'
-                ]"
-              >
-                {{ editMode ? 'Hủy' : 'Chỉnh sửa' }}
-              </button>
             </div>
 
             <form @submit.prevent="updateProfile" class="space-y-6">
@@ -77,7 +63,6 @@
                   </label>
                   <input
                     v-model="profileForm.fullName"
-                    :disabled="!editMode"
                     type="text"
                     class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent disabled:bg-gray-50"
                   />
@@ -89,11 +74,9 @@
                   </label>
                   <input
                     v-model="profileForm.email"
-                    disabled
                     type="email"
                     class="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-50"
                   />
-                  <p class="text-xs text-gray-500 mt-1">Email không thể thay đổi</p>
                 </div>
 
                 <div>
@@ -102,7 +85,6 @@
                   </label>
                   <input
                     v-model="profileForm.phone"
-                    :disabled="!editMode"
                     type="tel"
                     class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent disabled:bg-gray-50"
                   />
@@ -114,7 +96,6 @@
                   </label>
                   <input
                     v-model="profileForm.birthDate"
-                    :disabled="!editMode"
                     type="date"
                     class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent disabled:bg-gray-50"
                   />
@@ -126,27 +107,19 @@
                   </label>
                   <textarea
                     v-model="profileForm.address"
-                    :disabled="!editMode"
                     rows="3"
                     class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent disabled:bg-gray-50"
                   ></textarea>
                 </div>
               </div>
 
-              <div v-if="editMode" class="flex space-x-4">
+              <div class="flex space-x-4">
                 <button
                   type="submit"
                   :disabled="updating"
                   class="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg font-medium transition-colors disabled:opacity-50"
                 >
                   {{ updating ? 'Đang cập nhật...' : 'Cập nhật' }}
-                </button>
-                <button
-                  type="button"
-                  @click="cancelEdit"
-                  class="bg-gray-300 hover:bg-gray-400 text-gray-700 px-6 py-2 rounded-lg font-medium transition-colors"
-                >
-                  Hủy
                 </button>
               </div>
             </form>
@@ -354,7 +327,6 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 
 const activeTab = ref('info')
-const editMode = ref(false)
 const updating = ref(false)
 const changingPassword = ref(false)
 const passwordError = ref('')
@@ -481,14 +453,8 @@ const updateProfile = async () => {
 
   setTimeout(() => {
     Object.assign(user.value, profileForm)
-    editMode.value = false
     updating.value = false
   }, 1000)
-}
-
-const cancelEdit = () => {
-  Object.assign(profileForm, user.value)
-  editMode.value = false
 }
 
 const changePassword = async () => {

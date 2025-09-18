@@ -168,44 +168,6 @@
             </div>
           </div>
 
-          <div class="bg-white rounded-lg shadow-md p-8">
-            <h2 class="text-2xl font-bold text-gray-800 mb-6">Kết nối với chúng tôi</h2>
-            
-            <div class="grid grid-cols-2 gap-4">
-              <a
-                href="#"
-                class="flex items-center justify-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-lg transition-colors"
-              >
-                <span>📘</span>
-                <span>Facebook</span>
-              </a>
-              
-              <a
-                href="#"
-                class="flex items-center justify-center space-x-2 bg-pink-600 hover:bg-pink-700 text-white px-4 py-3 rounded-lg transition-colors"
-              >
-                <span>📷</span>
-                <span>Instagram</span>
-              </a>
-              
-              <a
-                href="#"
-                class="flex items-center justify-center space-x-2 bg-red-600 hover:bg-red-700 text-white px-4 py-3 rounded-lg transition-colors"
-              >
-                <span>📺</span>
-                <span>YouTube</span>
-              </a>
-              
-              <a
-                href="#"
-                class="flex items-center justify-center space-x-2 bg-green-600 hover:bg-green-700 text-white px-4 py-3 rounded-lg transition-colors"
-              >
-                <span>💬</span>
-                <span>Zalo</span>
-              </a>
-            </div>
-          </div>
-
           <div class="bg-green-50 rounded-lg p-8">
             <h2 class="text-2xl font-bold text-gray-800 mb-6">Câu hỏi thường gặp</h2>
             
@@ -230,22 +192,6 @@
                   Chúng tôi hỗ trợ đổi trả trong vòng 7 ngày nếu sản phẩm không đạt chất lượng.
                 </p>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="mt-12">
-        <div class="bg-white rounded-lg shadow-md p-8">
-          <h2 class="text-2xl font-bold text-gray-800 mb-6">Vị trí của chúng tôi</h2>
-
-          <div class="w-full h-96 bg-gray-200 rounded-lg flex items-center justify-center">
-            <div class="text-center">
-              <div class="text-4xl text-gray-400 mb-4">🗺️</div>
-              <p class="text-gray-500">
-                Bản đồ sẽ được tích hợp tại đây<br>
-                (Google Maps hoặc OpenStreetMap)
-              </p>
             </div>
           </div>
         </div>

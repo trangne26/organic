@@ -88,132 +88,6 @@
 
             <div class="p-6 md:p-8">
               <div class="prose prose-lg max-w-none" v-html="post.content"></div>
-
-              <div v-if="post.tags && post.tags.length > 0" class="mt-8 pt-6 border-t border-gray-200">
-                <h3 class="text-lg font-semibold text-gray-800 mb-3">Thẻ:</h3>
-                <div class="flex flex-wrap gap-2">
-                  <span
-                    v-for="tag in post.tags"
-                    :key="tag"
-                    class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium"
-                  >
-                    #{{ tag }}
-                  </span>
-                </div>
-              </div>
-
-              <div class="mt-8 pt-6 border-t border-gray-200">
-                <h3 class="text-lg font-semibold text-gray-800 mb-3">Chia sẻ bài viết:</h3>
-                <div class="flex space-x-4">
-                  <button
-                    @click="shareOnFacebook"
-                    class="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors"
-                  >
-                    <span>📘</span>
-                    <span>Facebook</span>
-                  </button>
-                  <button
-                    @click="shareOnTwitter"
-                    class="flex items-center space-x-2 bg-sky-500 hover:bg-sky-600 text-white px-4 py-2 rounded-lg transition-colors"
-                  >
-                    <span>🐦</span>
-                    <span>Twitter</span>
-                  </button>
-                  <button
-                    @click="copyLink"
-                    class="flex items-center space-x-2 bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg transition-colors"
-                  >
-                    <span>🔗</span>
-                    <span>Sao chép link</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="bg-white rounded-lg shadow-md p-6 mt-8">
-            <h3 class="text-xl font-semibold text-gray-800 mb-4">Về tác giả</h3>
-            <div class="flex items-start space-x-4">
-              <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
-                <span class="text-2xl">👤</span>
-              </div>
-              <div>
-                <h4 class="text-lg font-semibold text-gray-800">{{ post.author }}</h4>
-                <p class="text-gray-600 mt-2">
-                  {{ authorInfo.bio || 'Chuyên gia dinh dưỡng và thực phẩm hữu cơ với nhiều năm kinh nghiệm trong lĩnh vực sức khỏe và dinh dưỡng.' }}
-                </p>
-                <div class="flex space-x-4 mt-3">
-                  <a href="#" class="text-blue-600 hover:text-blue-700 text-sm">Facebook</a>
-                  <a href="#" class="text-sky-500 hover:text-sky-600 text-sm">Twitter</a>
-                  <a href="#" class="text-pink-600 hover:text-pink-700 text-sm">Instagram</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="bg-white rounded-lg shadow-md p-6 mt-8">
-            <h3 class="text-xl font-semibold text-gray-800 mb-6">Bình luận</h3>
-
-            <form @submit.prevent="submitComment" class="mb-8">
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                <input
-                  v-model="commentForm.name"
-                  type="text"
-                  placeholder="Tên của bạn"
-                  required
-                  class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                />
-                <input
-                  v-model="commentForm.email"
-                  type="email"
-                  placeholder="Email của bạn"
-                  required
-                  class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                />
-              </div>
-              <textarea
-                v-model="commentForm.message"
-                rows="4"
-                placeholder="Viết bình luận của bạn..."
-                required
-                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent mb-4"
-              ></textarea>
-              <button
-                type="submit"
-                :disabled="submittingComment"
-                class="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors disabled:opacity-50"
-              >
-                {{ submittingComment ? 'Đang gửi...' : 'Gửi bình luận' }}
-              </button>
-            </form>
-
-            <div v-if="comments.length === 0" class="text-center py-8">
-              <div class="text-4xl text-gray-400 mb-2">💬</div>
-              <p class="text-gray-500">Chưa có bình luận nào. Hãy là người đầu tiên bình luận!</p>
-            </div>
-
-            <div v-else class="space-y-6">
-              <div
-                v-for="comment in comments"
-                :key="comment.id"
-                class="border-b border-gray-200 pb-6 last:border-b-0 last:pb-0"
-              >
-                <div class="flex items-start space-x-4">
-                  <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
-                    <span class="text-sm">👤</span>
-                  </div>
-                  <div class="flex-1">
-                    <div class="flex items-center space-x-2 mb-2">
-                      <h4 class="font-semibold text-gray-800">{{ comment.name }}</h4>
-                      <span class="text-sm text-gray-500">{{ formatDate(comment.createdAt) }}</span>
-                    </div>
-                    <p class="text-gray-600">{{ comment.message }}</p>
-                    <button class="text-green-600 hover:text-green-700 text-sm mt-2">
-                      Trả lời
-                    </button>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </main>
@@ -253,7 +127,7 @@
             <p class="text-sm text-gray-600 mb-4">
               Đăng ký để nhận những bài viết hay và ưu đãi đặc biệt
             </p>
-            <form @submit.prevent="subscribeNewsletter" class="space-y-3">
+            <form @submit.prevent="dangkyEmail" class="space-y-3">
               <input
                 v-model="newsletterEmail"
                 type="email"
@@ -414,31 +288,7 @@ const copyLink = async () => {
   }
 }
 
-const submitComment = async () => {
-  submittingComment.value = true
-
-  setTimeout(() => {
-    const newComment = {
-      id: comments.value.length + 1,
-      name: commentForm.value.name,
-      email: commentForm.value.email,
-      message: commentForm.value.message,
-      createdAt: new Date()
-    }
-    
-    comments.value.push(newComment)
-
-    commentForm.value = {
-      name: '',
-      email: '',
-      message: ''
-    }
-    
-    submittingComment.value = false
-  }, 1500)
-}
-
-const subscribeNewsletter = async () => {
+const dangkyEmail = async () => {
   subscribing.value = true
 
   setTimeout(() => {

@@ -155,7 +155,7 @@ router.beforeEach((to, from, next) => {
     document.title = to.meta.title
   }
 
-  const isAuthenticated = false
+  const isAuthenticated = localStorage.getItem('authToken') !== null
   
   if (to.meta.requiresAuth && !isAuthenticated) {
     next({ name: 'Login', query: { redirect: to.fullPath } })

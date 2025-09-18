@@ -14,11 +14,11 @@
     <div class="container mx-auto px-4 py-8">
       <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
         <main class="lg:col-span-3">
-          <div v-if="featuredPost" class="bg-white rounded-lg shadow-md overflow-hidden mb-8">
+          <div v-if="baiNoiBat" class="bg-white rounded-lg shadow-md overflow-hidden mb-8">
             <div class="relative">
               <img
-                :src="featuredPost.image"
-                :alt="featuredPost.title"
+                :src="baiNoiBat.image"
+                :alt="baiNoiBat.title"
                 class="w-full h-64 object-cover"
               />
               <div class="absolute top-4 left-4">
@@ -29,18 +29,18 @@
             </div>
             <div class="p-6">
               <div class="flex items-center space-x-4 text-sm text-gray-600 mb-3">
-                <span>📅 {{ formatDate(featuredPost.publishedAt) }}</span>
-                <span>👤 {{ featuredPost.author }}</span>
-                <span>🏷️ {{ featuredPost.category }}</span>
+                <span>📅 {{ formatDate(baiNoiBat.publishedAt) }}</span>
+                <span>👤 {{ baiNoiBat.author }}</span>
+                <span>🏷️ {{ baiNoiBat.category }}</span>
               </div>
-              <router-link :to="`/blog/${featuredPost.slug}`">
+              <router-link :to="`/blog/${baiNoiBat.slug}`">
                 <h2 class="text-2xl font-bold text-gray-800 mb-3 hover:text-green-600 transition-colors">
-                  {{ featuredPost.title }}
+                  {{ baiNoiBat.title }}
                 </h2>
               </router-link>
-              <p class="text-gray-600 mb-4">{{ featuredPost.excerpt }}</p>
+              <p class="text-gray-600 mb-4">{{ baiNoiBat.excerpt }}</p>
               <router-link
-                :to="`/blog/${featuredPost.slug}`"
+                :to="`/blog/${baiNoiBat.slug}`"
                 class="text-green-600 hover:text-green-700 font-semibold"
               >
                 Đọc tiếp →
@@ -91,24 +91,6 @@
               </div>
             </article>
           </div>
-
-          <div v-if="totalPages > 1" class="flex justify-center">
-            <nav class="flex space-x-2">
-              <button
-                v-for="page in totalPages"
-                :key="page"
-                :class="[
-                  'px-4 py-2 rounded-md font-medium transition-colors',
-                  page === currentPage
-                    ? 'bg-green-600 text-white'
-                    : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-300'
-                ]"
-                @click="currentPage = page"
-              >
-                {{ page }}
-              </button>
-            </nav>
-          </div>
         </main>
 
         <aside class="lg:col-span-1">
@@ -117,14 +99,12 @@
             <h3 class="text-lg font-semibold text-gray-800 mb-4">Tìm kiếm</h3>
             <div class="relative">
               <input
-                v-model="searchQuery"
+                v-model="tuKhoa"
                 type="text"
                 placeholder="Tìm kiếm bài viết..."
                 class="w-full px-4 py-2 pr-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                @keyup.enter="search"
               />
               <button
-                @click="search"
                 class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-green-600"
               >
                 🔍
@@ -141,10 +121,10 @@
                 class="flex items-center justify-between"
               >
                 <button
-                  @click="filterByCategory(category.slug)"
+                  @click="filterByCategory(category.id)"
                   :class="[
                     'text-sm transition-colors',
-                    selectedCategory === category.slug
+                    danhMuc === category.id
                       ? 'text-green-600 font-semibold'
                       : 'text-gray-600 hover:text-green-600'
                   ]"
@@ -192,9 +172,9 @@
             <p class="text-sm text-gray-600 mb-4">
               Đăng ký để nhận những bài viết hay và ưu đãi đặc biệt
             </p>
-            <form @submit.prevent="subscribeNewsletter" class="space-y-3">
+            <form @submit.prevent="dangkyEmail" class="space-y-3">
               <input
-                v-model="newsletterEmail"
+                v-model="email"
                 type="email"
                 placeholder="Email của bạn"
                 required
@@ -218,14 +198,12 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 
-const searchQuery = ref('')
-const selectedCategory = ref('')
-const currentPage = ref(1)
-const postsPerPage = 6
-const newsletterEmail = ref('')
+const tuKhoa = ref('')
+const danhMuc = ref('')
+const email = ref('')
 const subscribing = ref(false)
 
-const featuredPost = ref({
+const baiNoiBat = ref({
   id: 1,
   title: '10 Lợi ích tuyệt vời của việc ăn thực phẩm hữu cơ',
   slug: '10-loi-ich-tuyet-voi-cua-viec-an-thuc-pham-huu-co',
@@ -234,6 +212,7 @@ const featuredPost = ref({
   image: '/images/blog/organic-benefits.jpg',
   author: 'Nguyễn Thị Lan',
   category: 'Sức khỏe',
+  categoryID: 1,
   publishedAt: new Date('2024-01-15'),
   readTime: 5,
   isFeatured: true
@@ -248,6 +227,7 @@ const allPosts = ref([
     image: '/images/blog/vegetable-storage.jpg',
     author: 'Trần Văn Nam',
     category: 'Mẹo hay',
+    categoryID: 2,
     publishedAt: new Date('2024-01-12'),
     readTime: 4
   },
@@ -259,6 +239,7 @@ const allPosts = ref([
     image: '/images/blog/organic-salad.jpg',
     author: 'Lê Thị Mai',
     category: 'Công thức',
+    categoryID: 3,
     publishedAt: new Date('2024-01-10'),
     readTime: 6
   },
@@ -270,6 +251,7 @@ const allPosts = ref([
     image: '/images/blog/organic-for-kids.jpg',
     author: 'Phạm Thị Hoa',
     category: 'Sức khỏe',
+    categoryID: 1,
     publishedAt: new Date('2024-01-08'),
     readTime: 5
   },
@@ -281,6 +263,7 @@ const allPosts = ref([
     image: '/images/blog/identify-organic.jpg',
     author: 'Hoàng Văn Đức',
     category: 'Kiến thức',
+    categoryID: 4,
     publishedAt: new Date('2024-01-05'),
     readTime: 7
   },
@@ -292,61 +275,41 @@ const allPosts = ref([
     image: '/images/blog/healthy-trends-2024.jpg',
     author: 'Ngô Thị Linh',
     category: 'Xu hướng',
+    categoryID: 5,
     publishedAt: new Date('2024-01-03'),
     readTime: 8
   }
 ])
 
 const categories = ref([
-  { name: 'Tất cả', slug: '', count: 6 },
-  { name: 'Sức khỏe', slug: 'suc-khoe', count: 2 },
-  { name: 'Công thức', slug: 'cong-thuc', count: 1 },
-  { name: 'Mẹo hay', slug: 'meo-hay', count: 1 },
-  { name: 'Kiến thức', slug: 'kien-thuc', count: 1 },
-  { name: 'Xu hướng', slug: 'xu-huong', count: 1 }
+  { id: null, name: 'Tất cả', slug: '', count: 6 },
+  { id: 1, name: 'Sức khỏe', slug: 'suc-khoe', count: 2 },
+  { id: 3, name: 'Công thức', slug: 'cong-thuc', count: 1 },
+  { id: 2,name: 'Mẹo hay', slug: 'meo-hay', count: 1 },
+  { id: 4,name: 'Kiến thức', slug: 'kien-thuc', count: 1 },
+  { id: 5,name: 'Xu hướng', slug: 'xu-huong', count: 1 }
 ])
 
 const posts = computed(() => {
   let filtered = allPosts.value
 
-  if (selectedCategory.value) {
-    filtered = filtered.filter(post => post.category.toLowerCase().replace(/\s+/g, '-') === selectedCategory.value)
+  if (danhMuc.value) {
+    filtered = filtered.filter(post => post.categoryID === danhMuc.value)
   }
 
-  if (searchQuery.value) {
-    const query = searchQuery.value.toLowerCase()
+  if (tuKhoa.value) {
+    const query = tuKhoa.value.toLowerCase()
     filtered = filtered.filter(post =>
       post.title.toLowerCase().includes(query) ||
       post.excerpt.toLowerCase().includes(query)
     )
   }
 
-  const start = (currentPage.value - 1) * postsPerPage
-  const end = start + postsPerPage
-  return filtered.slice(start, end)
-})
-
-const totalPages = computed(() => {
-  let filtered = allPosts.value
-
-  if (selectedCategory.value) {
-    filtered = filtered.filter(post => post.category.toLowerCase().replace(/\s+/g, '-') === selectedCategory.value)
-  }
-
-  if (searchQuery.value) {
-    const query = searchQuery.value.toLowerCase()
-    filtered = filtered.filter(post =>
-      post.title.toLowerCase().includes(query) ||
-      post.excerpt.toLowerCase().includes(query)
-    )
-  }
-
-  return Math.ceil(filtered.length / postsPerPage)
+  return filtered.slice(0, 6)
 })
 
 const recentPosts = computed(() => {
   return [...allPosts.value]
-    .sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt))
     .slice(0, 4)
 })
 
@@ -357,28 +320,20 @@ const formatDate = (date) => {
     day: 'numeric'
   }).format(date)
 }
-
-const search = () => {
-  currentPage.value = 1
+const filterByCategory = (id) => {
+  danhMuc.value = id
 }
 
-const filterByCategory = (categorySlug) => {
-  selectedCategory.value = categorySlug
-  currentPage.value = 1
-}
-
-const subscribeNewsletter = async () => {
+const dangkyEmail = async () => {
   subscribing.value = true
 
   setTimeout(() => {
     alert('Đăng ký thành công! Cảm ơn bạn đã quan tâm.')
-    newsletterEmail.value = ''
+    email.value = ''
     subscribing.value = false
   }, 1500)
 }
 
-onMounted(() => {
-})
 </script>
 
 <style scoped>

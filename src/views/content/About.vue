@@ -38,11 +38,6 @@
             </div>
           </div>
           <div>
-<!--            <img-->
-<!--              src="@/assets/our-story.jpg"-->
-<!--              alt="Câu chuyện của chúng tôi"-->
-<!--              class="w-full h-auto rounded-lg shadow-lg"-->
-<!--            />-->
           </div>
         </div>
       </div>
@@ -150,7 +145,7 @@
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <div
-            v-for="member in teamMembers"
+            v-for="member in memberss"
             :key="member.id"
             class="bg-white rounded-lg shadow-md overflow-hidden text-center"
           >
@@ -192,7 +187,7 @@
       </div>
     </section>
 
-    <section class="statistics py-16 bg-green-600 text-white">
+    <section class="py-16 bg-green-600 text-white">
       <div class="container mx-auto px-4">
         <div class="text-center mb-12">
           <h2 class="text-3xl font-bold mb-4">Những con số ấn tượng</h2>
@@ -203,7 +198,7 @@
         
         <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
           <div
-            v-for="stat in statistics"
+            v-for="stat in thongKe"
             :key="stat.id"
             class="text-center"
           >
@@ -245,7 +240,7 @@
 <script setup>
 import { ref } from 'vue'
 
-const teamMembers = ref([
+const memberss = ref([
   {
     id: 1,
     name: 'Nguyễn Thị Lan',
@@ -296,7 +291,7 @@ const certifications = ref([
   }
 ])
 
-const statistics = ref([
+const thongKe = ref([
   {
     id: 1,
     number: '50K+',
