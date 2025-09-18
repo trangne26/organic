@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-    <!-- Hero Banner -->
     <section class="hero-banner bg-green-50 py-16">
       <div class="container mx-auto px-4">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
@@ -37,7 +36,6 @@
       </div>
     </section>
 
-    <!-- Categories -->
     <section class="categories py-16">
       <div class="container mx-auto px-4">
         <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">
@@ -64,7 +62,6 @@
       </div>
     </section>
 
-    <!-- Featured Products -->
     <section class="featured-products py-16 bg-gray-50">
       <div class="container mx-auto px-4">
         <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">
@@ -121,7 +118,6 @@
       </div>
     </section>
 
-    <!-- Commitments -->
     <section class="commitments py-16">
       <div class="container mx-auto px-4">
         <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">
@@ -272,8 +268,7 @@ const formatPrice = (price) => {
 }
 
 const addToCart = (product) => {
-  // TODO: Implement add to cart functionality
-  console.log('Add to cart:', product)
+  console.log('Aproduct', product)
 }
 </script>
 

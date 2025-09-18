@@ -1,7 +1,6 @@
 <template>
   <header class="header bg-white shadow-sm sticky top-0 z-50">
-    <!-- Top Bar -->
-    <div class="bg-green-600 text-white py-2">
+   <div class="bg-green-600 text-white py-2">
       <div class="container mx-auto px-4">
         <div class="flex flex-col sm:flex-row justify-between items-center text-sm">
           <div class="flex items-center space-x-4">
@@ -15,10 +14,8 @@
       </div>
     </div>
 
-    <!-- Main Header -->
     <div class="container mx-auto px-4 py-4">
       <div class="flex items-center justify-between">
-        <!-- Logo -->
         <router-link to="/" class="flex items-center space-x-3">
           <div class="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center">
             <span class="text-white text-xl font-bold">🌱</span>
@@ -29,7 +26,6 @@
           </div>
         </router-link>
 
-        <!-- Search Bar (Desktop) -->
         <div class="hidden md:flex flex-1 max-w-lg mx-8">
           <div class="relative w-full">
             <input
@@ -51,9 +47,7 @@
           </div>
         </div>
 
-        <!-- Header Actions -->
         <div class="flex items-center space-x-4">
-          <!-- User Menu -->
           <div class="relative" v-click-outside="closeUserMenu">
             <button
               @click="toggleUserMenu"
@@ -64,7 +58,6 @@
               <span class="text-sm">{{ userMenuOpen ? '▲' : '▼' }}</span>
             </button>
             
-            <!-- User Dropdown -->
             <div
               v-show="userMenuOpen"
               class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50"
@@ -118,7 +111,6 @@
             </div>
           </div>
 
-          <!-- Cart -->
           <router-link
             to="/cart"
             class="relative flex items-center space-x-2 text-gray-700 hover:text-green-600 transition-colors"
@@ -135,7 +127,6 @@
             <span class="hidden sm:inline">Giỏ hàng</span>
           </router-link>
 
-          <!-- Mobile Menu Toggle -->
           <button
             @click="toggleMobileMenu"
             class="md:hidden text-gray-700 hover:text-green-600 transition-colors"
@@ -145,7 +136,6 @@
         </div>
       </div>
 
-      <!-- Mobile Search -->
       <div class="md:hidden mt-4">
         <div class="relative">
           <input
@@ -168,10 +158,8 @@
       </div>
     </div>
 
-    <!-- Navigation -->
     <nav class="bg-green-600 text-white">
       <div class="container mx-auto px-4">
-        <!-- Desktop Navigation -->
         <div class="hidden md:flex items-center justify-between py-3">
           <div class="flex items-center space-x-8">
             <router-link
@@ -182,7 +170,6 @@
               <span>Tất cả sản phẩm</span>
             </router-link>
             
-            <!-- Categories Dropdown -->
             <div class="relative" v-click-outside="closeCategoriesMenu">
               <button
                 @click="toggleCategoriesMenu"
@@ -233,8 +220,7 @@
           </div>
         </div>
 
-        <!-- Mobile Navigation -->
-        <div
+         <div
           v-show="mobileMenuOpen"
           class="md:hidden py-4 border-t border-green-500"
         >
@@ -247,7 +233,6 @@
               📦 Tất cả sản phẩm
             </router-link>
             
-            <!-- Mobile Categories -->
             <div>
               <button
                 @click="toggleMobileCategoriesMenu"
@@ -314,12 +299,10 @@ const categoriesMenuOpen = ref(false)
 const mobileMenuOpen = ref(false)
 const mobileCategoriesMenuOpen = ref(false)
 
-// Mock authentication state
 const isLoggedIn = computed(() => {
   return localStorage.getItem('authToken') !== null
 })
 
-// Mock cart items count
 const cartItemsCount = ref(3)
 
 const categories = ref([
@@ -378,7 +361,6 @@ const logout = () => {
   router.push('/')
 }
 
-// Click outside directive (simplified version)
 const vClickOutside = {
   beforeMount(el, binding) {
     el.clickOutsideEvent = function (event) {

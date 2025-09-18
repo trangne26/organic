@@ -1,6 +1,5 @@
 <template>
   <div class="profile">
-    <!-- Page Header -->
     <section class="page-header bg-green-50 py-12">
       <div class="container mx-auto px-4">
         <div class="text-center">
@@ -14,7 +13,6 @@
 
     <div class="container mx-auto px-4 py-8">
       <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
-        <!-- Sidebar Menu -->
         <aside class="lg:col-span-1">
           <div class="bg-white rounded-lg shadow-md p-6">
             <div class="text-center mb-6">
@@ -54,9 +52,7 @@
           </div>
         </aside>
 
-        <!-- Main Content -->
         <main class="lg:col-span-3">
-          <!-- Personal Information -->
           <div v-if="activeTab === 'info'" class="bg-white rounded-lg shadow-md p-6">
             <div class="flex items-center justify-between mb-6">
               <h2 class="text-xl font-semibold text-gray-800">Thông tin cá nhân</h2>
@@ -156,7 +152,6 @@
             </form>
           </div>
 
-          <!-- Order History -->
           <div v-if="activeTab === 'orders'" class="bg-white rounded-lg shadow-md p-6">
             <h2 class="text-xl font-semibold text-gray-800 mb-6">Lịch sử đơn hàng</h2>
             
@@ -232,7 +227,6 @@
             </div>
           </div>
 
-          <!-- Wishlist -->
           <div v-if="activeTab === 'wishlist'" class="bg-white rounded-lg shadow-md p-6">
             <h2 class="text-xl font-semibold text-gray-800 mb-6">Sản phẩm yêu thích</h2>
             
@@ -289,7 +283,6 @@
             </div>
           </div>
 
-          <!-- Change Password -->
           <div v-if="activeTab === 'password'" class="bg-white rounded-lg shadow-md p-6">
             <h2 class="text-xl font-semibold text-gray-800 mb-6">Đổi mật khẩu</h2>
             
@@ -374,7 +367,6 @@ const tabs = [
   { id: 'password', name: 'Đổi mật khẩu', icon: '🔒' }
 ]
 
-// Mock user data
 const user = ref({
   id: 1,
   fullName: 'Nguyễn Văn An',
@@ -392,7 +384,6 @@ const passwordForm = ref({
   confirmPassword: ''
 })
 
-// Mock orders data
 const orders = ref([
   {
     id: '2024001',
@@ -414,7 +405,6 @@ const orders = ref([
   }
 ])
 
-// Mock wishlist data
 const wishlist = ref([
   {
     id: 1,
@@ -488,8 +478,7 @@ const getDeliveryMethodText = (method) => {
 
 const updateProfile = async () => {
   updating.value = true
-  
-  // Simulate API call
+
   setTimeout(() => {
     Object.assign(user.value, profileForm)
     editMode.value = false
@@ -512,8 +501,7 @@ const changePassword = async () => {
   }
   
   changingPassword.value = true
-  
-  // Simulate API call
+
   setTimeout(() => {
     passwordSuccess.value = 'Mật khẩu đã được cập nhật thành công'
     passwordForm.value = {
@@ -526,12 +514,10 @@ const changePassword = async () => {
 }
 
 const viewOrderDetail = (orderId) => {
-  // TODO: Navigate to order detail page
   console.log('View order detail:', orderId)
 }
 
 const reorder = (orderId) => {
-  // TODO: Add order items to cart
   console.log('Reorder:', orderId)
 }
 
@@ -543,15 +529,12 @@ const removeFromWishlist = (itemId) => {
 }
 
 const addToCart = (item) => {
-  // TODO: Add to cart functionality
   console.log('Add to cart:', item)
 }
 
 const logout = () => {
-  // Remove auth token
   localStorage.removeItem('authToken')
-  
-  // Redirect to home
+
   router.push('/')
 }
 </script>

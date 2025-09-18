@@ -71,7 +71,6 @@
             </div>
           </div>
 
-          <!-- Error Message -->
           <div v-if="error" class="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded">
             {{ error }}
           </div>
@@ -100,8 +99,6 @@
               {{ loading ? 'Đang đăng nhập...' : 'Đăng nhập' }}
             </button>
           </div>
-
-          <!-- Social Login -->
           <div class="mt-6">
             <div class="relative">
               <div class="absolute inset-0 flex items-center">
@@ -177,10 +174,8 @@ const handleLogin = async () => {
   error.value = ''
   
   try {
-    // Simulate API call
     await new Promise((resolve, reject) => {
       setTimeout(() => {
-        // Mock authentication
         if (form.value.email === 'user@example.com' && form.value.password === 'password') {
           resolve()
         } else {
@@ -188,11 +183,9 @@ const handleLogin = async () => {
         }
       }, 1500)
     })
-    
-    // Store auth token (mock)
+
     localStorage.setItem('authToken', 'mock-jwt-token')
-    
-    // Redirect to intended page or home
+
     const redirectPath = router.currentRoute.value.query.redirect || '/'
     router.push(redirectPath)
     

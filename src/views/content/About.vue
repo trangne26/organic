@@ -1,6 +1,5 @@
 <template>
   <div class="about">
-    <!-- Hero Section -->
     <section class="hero bg-green-50 py-16">
       <div class="container mx-auto px-4">
         <div class="text-center">
@@ -15,7 +14,6 @@
       </div>
     </section>
 
-    <!-- Story Section -->
     <section class="story py-16">
       <div class="container mx-auto px-4">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -50,7 +48,6 @@
       </div>
     </section>
 
-    <!-- Mission Section -->
     <section class="mission py-16 bg-gray-50">
       <div class="container mx-auto px-4">
         <div class="text-center mb-12">
@@ -97,7 +94,6 @@
       </div>
     </section>
 
-    <!-- Values Section -->
     <section class="values py-16">
       <div class="container mx-auto px-4">
         <div class="text-center mb-12">
@@ -143,7 +139,6 @@
       </div>
     </section>
 
-    <!-- Team Section -->
     <section class="team py-16 bg-gray-50">
       <div class="container mx-auto px-4">
         <div class="text-center mb-12">
@@ -172,7 +167,6 @@
       </div>
     </section>
 
-    <!-- Certifications Section -->
     <section class="certifications py-16">
       <div class="container mx-auto px-4">
         <div class="text-center mb-12">
@@ -198,7 +192,6 @@
       </div>
     </section>
 
-    <!-- Statistics Section -->
     <section class="statistics py-16 bg-green-600 text-white">
       <div class="container mx-auto px-4">
         <div class="text-center mb-12">
@@ -221,7 +214,6 @@
       </div>
     </section>
 
-    <!-- CTA Section -->
     <section class="cta py-16">
       <div class="container mx-auto px-4 text-center">
         <h2 class="text-3xl font-bold text-gray-800 mb-4">
@@ -327,7 +319,3 @@ const statistics = ref([
   }
 ])
 </script>
-
-<style scoped>
-/* Custom animations and effects can be added here */
-</style>

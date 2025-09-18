@@ -1,6 +1,5 @@
 <template>
   <div class="checkout">
-    <!-- Page Header -->
     <section class="page-header bg-green-50 py-12">
       <div class="container mx-auto px-4">
         <div class="text-center">
@@ -13,7 +12,6 @@
     </section>
 
     <div class="container mx-auto px-4 py-8">
-      <!-- Checkout Steps -->
       <div class="mb-8">
         <div class="flex items-center justify-center space-x-4 sm:space-x-8">
           <div
@@ -51,10 +49,8 @@
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <!-- Checkout Form -->
         <div class="lg:col-span-2">
           <form @submit.prevent="processOrder" class="space-y-8">
-            <!-- Step 1: Shipping Information -->
             <div v-if="currentStep === 1" class="bg-white rounded-lg shadow-md p-6">
               <h2 class="text-xl font-semibold text-gray-800 mb-6">Thông tin giao hàng</h2>
               
@@ -122,7 +118,6 @@
                     <option value="">Chọn phường/xã</option>
                     <option value="ward1">Phường 1</option>
                     <option value="ward2">Phường 2</option>
-                    <!-- Add more wards -->
                   </select>
                 </div>
                 
@@ -138,7 +133,6 @@
                     <option value="">Chọn quận/huyện</option>
                     <option value="district1">Quận 1</option>
                     <option value="district3">Quận 3</option>
-                    <!-- Add more districts -->
                   </select>
                 </div>
                 
@@ -166,7 +160,6 @@
               </div>
             </div>
 
-            <!-- Step 2: Delivery Method -->
             <div v-if="currentStep === 2" class="bg-white rounded-lg shadow-md p-6">
               <h2 class="text-xl font-semibold text-gray-800 mb-6">Phương thức giao hàng</h2>
               
@@ -222,7 +215,6 @@
               </div>
             </div>
 
-            <!-- Step 3: Payment Method -->
             <div v-if="currentStep === 3" class="bg-white rounded-lg shadow-md p-6">
               <h2 class="text-xl font-semibold text-gray-800 mb-6">Phương thức thanh toán</h2>
               
@@ -279,7 +271,6 @@
           </form>
         </div>
 
-        <!-- Order Summary -->
         <div class="lg:col-span-1">
           <div class="bg-white rounded-lg shadow-md sticky top-4">
             <div class="p-6 border-b border-gray-200">
@@ -287,7 +278,6 @@
             </div>
             
             <div class="p-6">
-              <!-- Order Items -->
               <div class="space-y-4 mb-6">
                 <div
                   v-for="item in orderItems"
@@ -312,8 +302,7 @@
                   </span>
                 </div>
               </div>
-              
-              <!-- Order Summary -->
+
               <div class="space-y-3 border-t border-gray-200 pt-4">
                 <div class="flex justify-between">
                   <span class="text-gray-600">Tạm tính:</span>
@@ -426,7 +415,6 @@ const paymentMethods = [
   }
 ]
 
-// Mock order items
 const orderItems = ref([
   {
     id: 1,
@@ -487,10 +475,8 @@ const prevStep = () => {
 
 const processOrder = async () => {
   processing.value = true
-  
-  // Simulate order processing
+
   setTimeout(() => {
-    // Create order object
     const order = {
       id: Date.now(),
       items: orderItems.value,
@@ -504,10 +490,8 @@ const processOrder = async () => {
       status: 'pending',
       createdAt: new Date()
     }
-    
-    console.log('Order created:', order)
-    
-    // Redirect to success page or order confirmation
+    console.log('orderorder', order)
+
     router.push('/order-success')
     
     processing.value = false
@@ -516,7 +500,6 @@ const processOrder = async () => {
 </script>
 
 <style scoped>
-/* Custom radio button styles */
 input[type="radio"]:checked {
   background-color: #059669;
   border-color: #059669;

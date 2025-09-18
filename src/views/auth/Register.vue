@@ -104,7 +104,6 @@
             </div>
           </div>
 
-          <!-- Password Requirements -->
           <div class="bg-blue-50 border border-blue-200 rounded-md p-3">
             <h4 class="text-sm font-medium text-blue-800 mb-2">Yêu cầu mật khẩu:</h4>
             <ul class="text-xs text-blue-700 space-y-1">
@@ -141,12 +140,10 @@
             </label>
           </div>
 
-          <!-- Error Message -->
-          <div v-if="error" class="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded">
+           <div v-if="error" class="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded">
             {{ error }}
           </div>
 
-          <!-- Success Message -->
           <div v-if="success" class="bg-green-50 border border-green-200 text-green-600 px-4 py-3 rounded">
             {{ success }}
           </div>
@@ -176,7 +173,6 @@
             </button>
           </div>
 
-          <!-- Social Register -->
           <div class="mt-6">
             <div class="relative">
               <div class="absolute inset-0 flex items-center">
@@ -274,8 +270,7 @@ const handleRegister = async () => {
   loading.value = true
   error.value = ''
   success.value = ''
-  
-  // Validate passwords match
+
   if (form.value.password !== form.value.confirmPassword) {
     error.value = 'Mật khẩu xác nhận không khớp'
     loading.value = false
@@ -283,10 +278,8 @@ const handleRegister = async () => {
   }
   
   try {
-    // Simulate API call
     await new Promise((resolve, reject) => {
       setTimeout(() => {
-        // Mock registration - check if email already exists
         if (form.value.email === 'existing@example.com') {
           reject(new Error('Email này đã được sử dụng'))
         } else {
@@ -296,8 +289,7 @@ const handleRegister = async () => {
     })
     
     success.value = 'Tài khoản đã được tạo thành công! Đang chuyển hướng...'
-    
-    // Redirect to login after success
+
     setTimeout(() => {
       router.push('/login')
     }, 2000)

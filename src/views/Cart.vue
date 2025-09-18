@@ -1,6 +1,5 @@
 <template>
   <div class="cart">
-    <!-- Page Header -->
     <section class="page-header bg-green-50 py-12">
       <div class="container mx-auto px-4">
         <div class="text-center">
@@ -13,7 +12,6 @@
     </section>
 
     <div class="container mx-auto px-4 py-8">
-      <!-- Empty Cart -->
       <div v-if="cartItems.length === 0" class="text-center py-16">
         <div class="text-6xl text-gray-400 mb-6">🛒</div>
         <h2 class="text-2xl font-bold text-gray-600 mb-4">Giỏ hàng trống</h2>
@@ -26,9 +24,7 @@
         </router-link>
       </div>
 
-      <!-- Cart Items -->
       <div v-else class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <!-- Cart Items List -->
         <div class="lg:col-span-2">
           <div class="bg-white rounded-lg shadow-md">
             <div class="p-6 border-b border-gray-200">
@@ -43,7 +39,6 @@
                 :key="item.id"
                 class="p-6 flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-4"
               >
-                <!-- Product Image -->
                 <router-link :to="`/product/${item.id}`" class="flex-shrink-0">
                   <img
                     :src="item.image"
@@ -52,7 +47,6 @@
                   />
                 </router-link>
 
-                <!-- Product Info -->
                 <div class="flex-1 min-w-0">
                   <router-link
                     :to="`/product/${item.id}`"
@@ -69,7 +63,6 @@
                   </div>
                 </div>
 
-                <!-- Quantity Controls -->
                 <div class="flex items-center space-x-3">
                   <div class="flex items-center border border-gray-300 rounded-lg">
                     <button
@@ -95,7 +88,6 @@
                   </div>
                 </div>
 
-                <!-- Item Total & Remove -->
                 <div class="flex items-center space-x-4">
                   <span class="text-lg font-bold text-gray-800">
                     {{ formatPrice(item.price * item.quantity) }}
@@ -112,7 +104,6 @@
             </div>
           </div>
 
-          <!-- Continue Shopping -->
           <div class="mt-6">
             <router-link
               to="/products"
@@ -124,7 +115,6 @@
           </div>
         </div>
 
-        <!-- Order Summary -->
         <div class="lg:col-span-1">
           <div class="bg-white rounded-lg shadow-md sticky top-4">
             <div class="p-6 border-b border-gray-200">
@@ -155,8 +145,7 @@
                 <span>Tổng cộng:</span>
                 <span class="text-orange-500">{{ formatPrice(total) }}</span>
               </div>
-              
-              <!-- Promo Code -->
+
               <div class="mt-6">
                 <div class="flex space-x-2">
                   <input
@@ -180,16 +169,14 @@
                   {{ promoMessage.text }}
                 </p>
               </div>
-              
-              <!-- Checkout Button -->
+
               <button
                 @click="goToCheckout"
                 class="w-full bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors mt-6"
               >
                 Tiến hành thanh toán
               </button>
-              
-              <!-- Free Shipping Notice -->
+
               <div v-if="freeShippingThreshold - subtotal > 0" class="bg-blue-50 p-4 rounded-lg mt-4">
                 <p class="text-sm text-blue-600">
                   💡 Mua thêm {{ formatPrice(freeShippingThreshold - subtotal) }} để được miễn phí vận chuyển!
@@ -212,9 +199,8 @@ const router = useRouter()
 const promoCode = ref('')
 const applyingPromo = ref(false)
 const promoMessage = ref(null)
-const freeShippingThreshold = 200000 // 200k VND
+const freeShippingThreshold = 200000
 
-// Mock cart data - replace with store/API
 const cartItems = ref([
   {
     id: 1,
@@ -287,10 +273,8 @@ const applyPromoCode = async () => {
   
   applyingPromo.value = true
   promoMessage.value = null
-  
-  // Simulate API call
+
   setTimeout(() => {
-    // Mock promo codes
     const promoCodes = {
       'WELCOME10': { type: 'percentage', value: 10 },
       'SAVE20K': { type: 'fixed', value: 20000 },
@@ -313,7 +297,6 @@ const applyPromoCode = async () => {
           text: `Đã áp dụng mã giảm ${formatPrice(promo.value)}`
         }
       } else if (promo.type === 'freeship') {
-        // Handle free shipping logic
         promoMessage.value = {
           type: 'success',
           text: 'Đã áp dụng mã miễn phí vận chuyển'
@@ -336,7 +319,6 @@ const goToCheckout = () => {
 </script>
 
 <style scoped>
-/* Custom styles for quantity input */
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;

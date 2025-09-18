@@ -1,18 +1,15 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-// Views
 import Home from '@/views/Home.vue'
 import ProductList from '@/views/products/ProductList.vue'
 import ProductDetail from '@/views/products/ProductDetail.vue'
 import Cart from '@/views/Cart.vue'
 import Checkout from '@/views/Checkout.vue'
 
-// Auth Views
 import Login from '@/views/auth/Login.vue'
 import Register from '@/views/auth/Register.vue'
 import Profile from '@/views/auth/Profile.vue'
 
-// Content Views
 import Blog from '@/views/content/Blog.vue'
 import BlogPost from '@/views/content/BlogPost.vue'
 import About from '@/views/content/About.vue'
@@ -152,15 +149,13 @@ const router = createRouter({
   }
 })
 
-// Navigation guards
 router.beforeEach((to, from, next) => {
-  // Set page title
+
   if (to.meta.title) {
     document.title = to.meta.title
   }
 
-  // Check authentication (placeholder - implement with actual auth logic)
-  const isAuthenticated = false // Replace with actual auth check
+  const isAuthenticated = false
   
   if (to.meta.requiresAuth && !isAuthenticated) {
     next({ name: 'Login', query: { redirect: to.fullPath } })

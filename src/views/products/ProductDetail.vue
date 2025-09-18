@@ -26,7 +26,6 @@
     </div>
 
     <div v-else class="container mx-auto px-4 py-8">
-      <!-- Breadcrumb -->
       <nav class="flex mb-8" aria-label="Breadcrumb">
         <ol class="flex items-center space-x-2 text-sm">
           <li>
@@ -42,7 +41,6 @@
       </nav>
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-        <!-- Product Images -->
         <div class="space-y-4">
           <div class="relative">
             <img
@@ -59,8 +57,7 @@
               🔍
             </button>
           </div>
-          
-          <!-- Thumbnail Images -->
+
           <div v-if="product.images && product.images.length > 1" class="flex space-x-2 overflow-x-auto">
             <button
               v-for="(image, index) in product.images"
@@ -76,14 +73,12 @@
           </div>
         </div>
 
-        <!-- Product Info -->
         <div class="space-y-6">
           <div>
             <h1 class="text-3xl font-bold text-gray-800 mb-2">{{ product.name }}</h1>
             <p class="text-gray-600">{{ product.shortDescription }}</p>
           </div>
 
-          <!-- Price -->
           <div class="flex items-center space-x-4">
             <span
               v-if="product.originalPrice && product.originalPrice !== product.price"
@@ -102,7 +97,6 @@
             </span>
           </div>
 
-          <!-- Certifications -->
           <div v-if="product.certifications && product.certifications.length > 0">
             <h3 class="text-sm font-semibold text-gray-700 mb-2">Chứng nhận:</h3>
             <div class="flex flex-wrap gap-2">
@@ -116,7 +110,6 @@
             </div>
           </div>
 
-          <!-- Quantity and Add to Cart -->
           <div class="border-t border-gray-200 pt-6">
             <div class="flex items-center space-x-4 mb-4">
               <label class="text-sm font-medium text-gray-700">Số lượng:</label>
@@ -167,7 +160,6 @@
             </div>
           </div>
 
-          <!-- Product Details -->
           <div class="border-t border-gray-200 pt-6">
             <h3 class="text-lg font-semibold text-gray-800 mb-4">Thông tin sản phẩm</h3>
             <div class="grid grid-cols-2 gap-4 text-sm">
@@ -192,13 +184,11 @@
         </div>
       </div>
 
-      <!-- Product Description -->
       <div class="mt-12 border-t border-gray-200 pt-8">
         <h2 class="text-2xl font-bold text-gray-800 mb-6">Mô tả sản phẩm</h2>
         <div class="prose max-w-none text-gray-600" v-html="product.description"></div>
       </div>
 
-      <!-- Reviews Section -->
       <div class="mt-12 border-t border-gray-200 pt-8">
         <div class="flex items-center justify-between mb-6">
           <h2 class="text-2xl font-bold text-gray-800">Đánh giá khách hàng</h2>
@@ -210,7 +200,6 @@
           </button>
         </div>
 
-        <!-- Review Form -->
         <div v-if="showReviewForm" class="bg-gray-50 p-6 rounded-lg mb-6">
           <h3 class="text-lg font-semibold mb-4">Viết đánh giá của bạn</h3>
           <form @submit.prevent="submitReview">
@@ -258,7 +247,6 @@
           </form>
         </div>
 
-        <!-- Reviews List -->
         <div v-if="product.reviews && product.reviews.length > 0" class="space-y-6">
           <div
             v-for="review in product.reviews"
@@ -295,7 +283,6 @@
         </div>
       </div>
 
-      <!-- Related Products -->
       <div class="mt-12 border-t border-gray-200 pt-8">
         <h2 class="text-2xl font-bold text-gray-800 mb-6">Sản phẩm liên quan</h2>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -348,7 +335,6 @@ const newReview = ref({
 
 const relatedProducts = ref([])
 
-// Mock product data - replace with API call
 const mockProduct = {
   id: 1,
   name: 'Rau cải xanh hữu cơ',
@@ -429,7 +415,6 @@ const decreaseQuantity = () => {
 }
 
 const addToCart = () => {
-  // TODO: Implement add to cart functionality
   console.log('Add to cart:', {
     product: product.value,
     quantity: quantity.value
@@ -438,24 +423,20 @@ const addToCart = () => {
 
 const toggleWishlist = () => {
   isInWishlist.value = !isInWishlist.value
-  // TODO: Implement wishlist functionality
   console.log('Toggle wishlist:', isInWishlist.value)
 }
 
 const submitReview = () => {
-  // TODO: Implement review submission
   console.log('Submit review:', newReview.value)
   showReviewForm.value = false
   newReview.value = { rating: 5, comment: '' }
 }
 
 onMounted(async () => {
-  // Simulate API call
   setTimeout(() => {
     product.value = mockProduct
     selectedImage.value = product.value.images[0]
-    
-    // Mock related products
+
     relatedProducts.value = [
       {
         id: 2,

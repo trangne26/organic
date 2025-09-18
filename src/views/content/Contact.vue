@@ -1,6 +1,5 @@
 <template>
   <div class="contact">
-    <!-- Page Header -->
     <section class="page-header bg-green-50 py-12">
       <div class="container mx-auto px-4">
         <div class="text-center">
@@ -14,7 +13,7 @@
 
     <div class="container mx-auto px-4 py-12">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-        <!-- Contact Form -->
+
         <div class="bg-white rounded-lg shadow-md p-8">
           <h2 class="text-2xl font-bold text-gray-800 mb-6">Gửi tin nhắn cho chúng tôi</h2>
           
@@ -91,7 +90,6 @@
               ></textarea>
             </div>
 
-            <!-- Success/Error Messages -->
             <div v-if="successMessage" class="bg-green-50 border border-green-200 text-green-600 px-4 py-3 rounded">
               {{ successMessage }}
             </div>
@@ -110,9 +108,7 @@
           </form>
         </div>
 
-        <!-- Contact Information -->
         <div class="space-y-8">
-          <!-- Contact Details -->
           <div class="bg-white rounded-lg shadow-md p-8">
             <h2 class="text-2xl font-bold text-gray-800 mb-6">Thông tin liên hệ</h2>
             
@@ -172,7 +168,6 @@
             </div>
           </div>
 
-          <!-- Social Media -->
           <div class="bg-white rounded-lg shadow-md p-8">
             <h2 class="text-2xl font-bold text-gray-800 mb-6">Kết nối với chúng tôi</h2>
             
@@ -211,7 +206,6 @@
             </div>
           </div>
 
-          <!-- FAQ Quick Links -->
           <div class="bg-green-50 rounded-lg p-8">
             <h2 class="text-2xl font-bold text-gray-800 mb-6">Câu hỏi thường gặp</h2>
             
@@ -241,12 +235,10 @@
         </div>
       </div>
 
-      <!-- Map Section -->
       <div class="mt-12">
         <div class="bg-white rounded-lg shadow-md p-8">
           <h2 class="text-2xl font-bold text-gray-800 mb-6">Vị trí của chúng tôi</h2>
-          
-          <!-- Placeholder for map -->
+
           <div class="w-full h-96 bg-gray-200 rounded-lg flex items-center justify-center">
             <div class="text-center">
               <div class="text-4xl text-gray-400 mb-4">🗺️</div>
@@ -259,7 +251,6 @@
         </div>
       </div>
 
-      <!-- Store Locations -->
       <div class="mt-12">
         <div class="text-center mb-8">
           <h2 class="text-3xl font-bold text-gray-800 mb-4">Hệ thống cửa hàng</h2>
@@ -339,10 +330,8 @@ const submitForm = async () => {
   errorMessage.value = ''
   
   try {
-    // Simulate API call
     await new Promise((resolve, reject) => {
       setTimeout(() => {
-        // Mock success/failure
         if (Math.random() > 0.1) {
           resolve()
         } else {
@@ -352,8 +341,7 @@ const submitForm = async () => {
     })
     
     successMessage.value = 'Cảm ơn bạn đã liên hệ! Chúng tôi sẽ phản hồi trong vòng 24 giờ.'
-    
-    // Reset form
+
     form.value = {
       fullName: '',
       email: '',

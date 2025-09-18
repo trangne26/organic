@@ -1,6 +1,5 @@
 <template>
   <div class="blog">
-    <!-- Page Header -->
     <section class="page-header bg-green-50 py-12">
       <div class="container mx-auto px-4">
         <div class="text-center">
@@ -14,9 +13,7 @@
 
     <div class="container mx-auto px-4 py-8">
       <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
-        <!-- Main Content -->
         <main class="lg:col-span-3">
-          <!-- Featured Post -->
           <div v-if="featuredPost" class="bg-white rounded-lg shadow-md overflow-hidden mb-8">
             <div class="relative">
               <img
@@ -51,7 +48,6 @@
             </div>
           </div>
 
-          <!-- Blog Posts Grid -->
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
             <article
               v-for="post in posts"
@@ -96,7 +92,6 @@
             </article>
           </div>
 
-          <!-- Pagination -->
           <div v-if="totalPages > 1" class="flex justify-center">
             <nav class="flex space-x-2">
               <button
@@ -116,9 +111,8 @@
           </div>
         </main>
 
-        <!-- Sidebar -->
         <aside class="lg:col-span-1">
-          <!-- Search -->
+
           <div class="bg-white rounded-lg shadow-md p-6 mb-6">
             <h3 class="text-lg font-semibold text-gray-800 mb-4">Tìm kiếm</h3>
             <div class="relative">
@@ -138,7 +132,6 @@
             </div>
           </div>
 
-          <!-- Categories -->
           <div class="bg-white rounded-lg shadow-md p-6 mb-6">
             <h3 class="text-lg font-semibold text-gray-800 mb-4">Danh mục</h3>
             <ul class="space-y-2">
@@ -165,7 +158,6 @@
             </ul>
           </div>
 
-          <!-- Recent Posts -->
           <div class="bg-white rounded-lg shadow-md p-6 mb-6">
             <h3 class="text-lg font-semibold text-gray-800 mb-4">Bài viết gần đây</h3>
             <div class="space-y-4">
@@ -195,7 +187,6 @@
             </div>
           </div>
 
-          <!-- Newsletter -->
           <div class="bg-green-50 rounded-lg p-6">
             <h3 class="text-lg font-semibold text-gray-800 mb-4">Nhận tin tức mới nhất</h3>
             <p class="text-sm text-gray-600 mb-4">
@@ -234,7 +225,6 @@ const postsPerPage = 6
 const newsletterEmail = ref('')
 const subscribing = ref(false)
 
-// Mock data
 const featuredPost = ref({
   id: 1,
   title: '10 Lợi ích tuyệt vời của việc ăn thực phẩm hữu cơ',
@@ -319,12 +309,10 @@ const categories = ref([
 const posts = computed(() => {
   let filtered = allPosts.value
 
-  // Filter by category
   if (selectedCategory.value) {
     filtered = filtered.filter(post => post.category.toLowerCase().replace(/\s+/g, '-') === selectedCategory.value)
   }
 
-  // Filter by search
   if (searchQuery.value) {
     const query = searchQuery.value.toLowerCase()
     filtered = filtered.filter(post =>
@@ -333,7 +321,6 @@ const posts = computed(() => {
     )
   }
 
-  // Pagination
   const start = (currentPage.value - 1) * postsPerPage
   const end = start + postsPerPage
   return filtered.slice(start, end)
@@ -373,7 +360,6 @@ const formatDate = (date) => {
 
 const search = () => {
   currentPage.value = 1
-  // Search functionality is handled by computed property
 }
 
 const filterByCategory = (categorySlug) => {
@@ -383,8 +369,7 @@ const filterByCategory = (categorySlug) => {
 
 const subscribeNewsletter = async () => {
   subscribing.value = true
-  
-  // Simulate API call
+
   setTimeout(() => {
     alert('Đăng ký thành công! Cảm ơn bạn đã quan tâm.')
     newsletterEmail.value = ''
@@ -393,7 +378,6 @@ const subscribeNewsletter = async () => {
 }
 
 onMounted(() => {
-  // Load blog posts
 })
 </script>
 

@@ -1,10 +1,8 @@
 <template>
   <footer class="footer bg-gray-800 text-white">
-    <!-- Main Footer -->
     <div class="container mx-auto px-4 py-12">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        <!-- Company Info -->
-        <div>
+       <div>
           <div class="flex items-center space-x-3 mb-6">
             <div class="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center">
               <span class="text-white text-xl font-bold">🌱</span>
@@ -34,7 +32,6 @@
           </div>
         </div>
 
-        <!-- Quick Links -->
         <div>
           <h4 class="text-lg font-semibold mb-6">Liên kết nhanh</h4>
           <ul class="space-y-3">
@@ -83,8 +80,7 @@
           </ul>
         </div>
 
-        <!-- Product Categories -->
-        <div>
+       <div>
           <h4 class="text-lg font-semibold mb-6">Danh mục sản phẩm</h4>
           <ul class="space-y-3">
             <li
@@ -102,7 +98,6 @@
           </ul>
         </div>
 
-        <!-- Contact Info -->
         <div>
           <h4 class="text-lg font-semibold mb-6">Thông tin liên hệ</h4>
           <div class="space-y-4">
@@ -156,7 +151,6 @@
       </div>
     </div>
 
-    <!-- Newsletter -->
     <div class="bg-gray-700 py-8">
       <div class="container mx-auto px-4">
         <div class="text-center mb-6">
@@ -190,7 +184,6 @@
       </div>
     </div>
 
-    <!-- Payment Methods -->
     <div class="bg-gray-700 border-t border-gray-600 py-6">
       <div class="container mx-auto px-4">
         <div class="text-center">
@@ -221,7 +214,6 @@
       </div>
     </div>
 
-    <!-- Certifications -->
     <div class="bg-gray-700 border-t border-gray-600 py-6">
       <div class="container mx-auto px-4">
         <div class="text-center">
@@ -248,7 +240,6 @@
       </div>
     </div>
 
-    <!-- Bottom Footer -->
     <div class="bg-gray-900 py-4">
       <div class="container mx-auto px-4">
         <div class="flex flex-col md:flex-row justify-between items-center">
@@ -272,7 +263,6 @@
       </div>
     </div>
 
-    <!-- Back to Top Button -->
     <button
       v-show="showBackToTop"
       @click="scrollToTop"
@@ -308,10 +298,8 @@ const subscribeNewsletter = async () => {
   subscribeMessage.value = null
   
   try {
-    // Simulate API call
     await new Promise((resolve, reject) => {
       setTimeout(() => {
-        // Mock success/failure
         if (Math.random() > 0.1) {
           resolve()
         } else {
@@ -334,8 +322,7 @@ const subscribeNewsletter = async () => {
     }
   } finally {
     subscribing.value = false
-    
-    // Clear message after 3 seconds
+
     setTimeout(() => {
       subscribeMessage.value = null
     }, 3000)

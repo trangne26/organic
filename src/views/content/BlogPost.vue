@@ -25,7 +25,7 @@
     </div>
 
     <article v-else class="container mx-auto px-4 py-8">
-      <!-- Breadcrumb -->
+
       <nav class="flex mb-8" aria-label="Breadcrumb">
         <ol class="flex items-center space-x-2 text-sm">
           <li>
@@ -41,10 +41,9 @@
       </nav>
 
       <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
-        <!-- Main Content -->
+
         <main class="lg:col-span-3">
           <div class="bg-white rounded-lg shadow-md overflow-hidden">
-            <!-- Featured Image -->
             <div class="relative">
               <img
                 :src="post.image"
@@ -58,7 +57,6 @@
               </div>
             </div>
 
-            <!-- Article Header -->
             <header class="p-6 md:p-8 border-b border-gray-200">
               <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
                 {{ post.title }}
@@ -88,11 +86,9 @@
               </p>
             </header>
 
-            <!-- Article Content -->
             <div class="p-6 md:p-8">
               <div class="prose prose-lg max-w-none" v-html="post.content"></div>
-              
-              <!-- Tags -->
+
               <div v-if="post.tags && post.tags.length > 0" class="mt-8 pt-6 border-t border-gray-200">
                 <h3 class="text-lg font-semibold text-gray-800 mb-3">Thẻ:</h3>
                 <div class="flex flex-wrap gap-2">
@@ -106,7 +102,6 @@
                 </div>
               </div>
 
-              <!-- Social Share -->
               <div class="mt-8 pt-6 border-t border-gray-200">
                 <h3 class="text-lg font-semibold text-gray-800 mb-3">Chia sẻ bài viết:</h3>
                 <div class="flex space-x-4">
@@ -136,7 +131,6 @@
             </div>
           </div>
 
-          <!-- Author Info -->
           <div class="bg-white rounded-lg shadow-md p-6 mt-8">
             <h3 class="text-xl font-semibold text-gray-800 mb-4">Về tác giả</h3>
             <div class="flex items-start space-x-4">
@@ -157,11 +151,9 @@
             </div>
           </div>
 
-          <!-- Comments Section -->
           <div class="bg-white rounded-lg shadow-md p-6 mt-8">
             <h3 class="text-xl font-semibold text-gray-800 mb-6">Bình luận</h3>
-            
-            <!-- Comment Form -->
+
             <form @submit.prevent="submitComment" class="mb-8">
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                 <input
@@ -195,7 +187,6 @@
               </button>
             </form>
 
-            <!-- Comments List -->
             <div v-if="comments.length === 0" class="text-center py-8">
               <div class="text-4xl text-gray-400 mb-2">💬</div>
               <p class="text-gray-500">Chưa có bình luận nào. Hãy là người đầu tiên bình luận!</p>
@@ -227,9 +218,7 @@
           </div>
         </main>
 
-        <!-- Sidebar -->
         <aside class="lg:col-span-1">
-          <!-- Related Posts -->
           <div class="bg-white rounded-lg shadow-md p-6 mb-6">
             <h3 class="text-lg font-semibold text-gray-800 mb-4">Bài viết liên quan</h3>
             <div class="space-y-4">
@@ -259,7 +248,6 @@
             </div>
           </div>
 
-          <!-- Newsletter -->
           <div class="bg-green-50 rounded-lg p-6">
             <h3 class="text-lg font-semibold text-gray-800 mb-4">Nhận tin tức mới nhất</h3>
             <p class="text-sm text-gray-600 mb-4">
@@ -345,7 +333,6 @@ const relatedPosts = ref([
   }
 ])
 
-// Mock post data
 const mockPosts = {
   '10-loi-ich-tuyet-voi-cua-viec-an-thuc-pham-huu-co': {
     id: 1,
@@ -429,8 +416,7 @@ const copyLink = async () => {
 
 const submitComment = async () => {
   submittingComment.value = true
-  
-  // Simulate API call
+
   setTimeout(() => {
     const newComment = {
       id: comments.value.length + 1,
@@ -441,8 +427,7 @@ const submitComment = async () => {
     }
     
     comments.value.push(newComment)
-    
-    // Reset form
+
     commentForm.value = {
       name: '',
       email: '',
@@ -455,8 +440,7 @@ const submitComment = async () => {
 
 const subscribeNewsletter = async () => {
   subscribing.value = true
-  
-  // Simulate API call
+
   setTimeout(() => {
     alert('Đăng ký thành công! Cảm ơn bạn đã quan tâm.')
     newsletterEmail.value = ''
@@ -465,7 +449,6 @@ const subscribeNewsletter = async () => {
 }
 
 onMounted(async () => {
-  // Simulate loading
   setTimeout(() => {
     post.value = mockPosts[slug.value] || null
     loading.value = false

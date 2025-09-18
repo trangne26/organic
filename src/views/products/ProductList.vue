@@ -1,6 +1,5 @@
 <template>
   <div class="product-list">
-    <!-- Page Header -->
     <section class="page-header bg-green-50 py-12">
       <div class="container mx-auto px-4">
         <div class="text-center">
@@ -16,12 +15,10 @@
 
     <div class="container mx-auto px-4 py-8">
       <div class="flex flex-col lg:flex-row gap-8">
-        <!-- Filters Sidebar -->
         <aside class="lg:w-1/4">
           <div class="bg-white rounded-lg shadow-md p-6 sticky top-4">
             <h3 class="text-lg font-semibold text-gray-800 mb-4">Bộ lọc</h3>
-            
-            <!-- Search -->
+
             <div class="mb-6">
               <label class="block text-sm font-medium text-gray-700 mb-2">
                 Tìm kiếm
@@ -35,7 +32,6 @@
               />
             </div>
 
-            <!-- Category Filter -->
             <div class="mb-6">
               <label class="block text-sm font-medium text-gray-700 mb-2">
                 Danh mục
@@ -52,7 +48,6 @@
               </select>
             </div>
 
-            <!-- Price Range -->
             <div class="mb-6">
               <label class="block text-sm font-medium text-gray-700 mb-2">
                 Khoảng giá
@@ -79,7 +74,6 @@
               </div>
             </div>
 
-            <!-- Certification -->
             <div class="mb-6">
               <label class="block text-sm font-medium text-gray-700 mb-2">
                 Chứng nhận
@@ -98,7 +92,6 @@
               </div>
             </div>
 
-            <!-- Clear Filters -->
             <button
               @click="clearFilters"
               class="w-full bg-gray-200 hover:bg-gray-300 text-gray-700 px-4 py-2 rounded-md transition-colors"
@@ -108,9 +101,7 @@
           </div>
         </aside>
 
-        <!-- Products Grid -->
         <main class="lg:w-3/4">
-          <!-- Sort Options -->
           <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
             <p class="text-gray-600">
               Hiển thị {{ filteredProducts.length }} sản phẩm
@@ -127,7 +118,6 @@
             </select>
           </div>
 
-          <!-- Products Grid -->
           <div v-if="loading" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div v-for="n in 6" :key="n" class="animate-pulse">
               <div class="bg-gray-300 h-48 rounded-t-lg"></div>
@@ -208,7 +198,6 @@
             </div>
           </div>
 
-          <!-- Pagination -->
           <div v-if="totalPages > 1" class="flex justify-center mt-8">
             <nav class="flex space-x-2">
               <button
@@ -292,7 +281,6 @@ const products = ref([
     discount: 10,
     certifications: ['organic']
   },
-  // Add more products here...
 ])
 
 const pageTitle = computed(() => {
@@ -306,12 +294,10 @@ const pageTitle = computed(() => {
 const filteredProducts = computed(() => {
   let result = [...products.value]
 
-  // Filter by route category
   if (route.params.category) {
     result = result.filter(product => product.category === route.params.category)
   }
 
-  // Filter by search
   if (filters.value.search) {
     const searchTerm = filters.value.search.toLowerCase()
     result = result.filter(product =>
@@ -320,12 +306,10 @@ const filteredProducts = computed(() => {
     )
   }
 
-  // Filter by category
   if (filters.value.category) {
     result = result.filter(product => product.category === filters.value.category)
   }
 
-  // Filter by price range
   if (filters.value.minPrice) {
     result = result.filter(product => product.price >= filters.value.minPrice)
   }
@@ -333,7 +317,6 @@ const filteredProducts = computed(() => {
     result = result.filter(product => product.price <= filters.value.maxPrice)
   }
 
-  // Filter by certifications
   if (filters.value.certifications.length > 0) {
     result = result.filter(product =>
       filters.value.certifications.some(cert => product.certifications.includes(cert))
@@ -395,18 +378,15 @@ const formatPrice = (price) => {
 }
 
 const addToCart = (product) => {
-  // TODO: Implement add to cart functionality
   console.log('Add to cart:', product)
 }
 
-// Watch route changes
 watch(() => route.params.category, () => {
   filters.value.category = ''
   currentPage.value = 1
 })
 
 onMounted(() => {
-  // Simulate loading
   setTimeout(() => {
     loading.value = false
   }, 1000)
